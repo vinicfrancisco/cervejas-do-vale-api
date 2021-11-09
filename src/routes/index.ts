@@ -4,9 +4,9 @@ import alexaRoutes from './alexa';
 
 const routes = Router();
 
+routes.use('/alexa', alexaRoutes);
+
 alexaRoutes.use(alexaVerifier);
 alexaRoutes.use(express.json());
-
-routes.use('/alexa', alexaRoutes);
 
 export default routes;
