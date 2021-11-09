@@ -43,6 +43,9 @@ routes.post('/', (req: Request, res: Response) => {
       case 'AMAZON.HelpIntent':
         console.log('HELP');
         break;
+      case 'HelloWorldIntent':
+        console.log(JSON.stringify(req.body.request));
+        break;
       default:
         console.log(req.body.request.intent.name);
         break;
