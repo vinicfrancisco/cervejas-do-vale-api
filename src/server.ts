@@ -18,6 +18,14 @@ const adapter = new ExpressAdapter(skill, true, true);
 
 const app = express();
 
+app.use(
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  }),
+);
+
 // app.use(cors());
 // app.use(express.json());
 
