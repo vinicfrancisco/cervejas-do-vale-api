@@ -1,17 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { ExpressAdapter } from 'ask-sdk-express-adapter';
-import {
-  RequestHandler,
-  HandlerInput,
-  SkillBuilders,
-  getRequestType,
-  getIntentName,
-} from 'ask-sdk-core';
-import { Response as AlexaResponse } from 'ask-sdk-model';
-
-const skillBuilder = SkillBuilders.custom();
-const skill = skillBuilder.create();
-const adapter = new ExpressAdapter(skill, true, true);
 
 const routes = Router();
 
@@ -40,13 +27,9 @@ function buildResponse(
   return jsonObj;
 }
 
-routes.post(
-  '/alexa',
-  adapter.getRequestHandlers(),
-  (req: Request, res: Response) => {
-    console.log('CHEGOU AQUI');
-    return res.json(buildResponse('Teste', true, 'Teste'));
-  },
-);
+routes.get('/', (req: Request, res: Response) => {
+  console.log('CHEGOU AQUI');
+  return res.json(buildResponse('Teste', true, 'Teste'));
+});
 
 export default routes;

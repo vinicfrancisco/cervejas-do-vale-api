@@ -21,17 +21,7 @@ const app = express();
 // app.use(cors());
 // app.use(express.json());
 
-// app.use(routes);
-
-app.post(
-  '/alexa',
-  adapter.getRequestHandlers(),
-  (req: Request, res: Response) => {
-    console.log('BATEU AQUI');
-
-    return res.send();
-  },
-);
+app.use(routes);
 
 app.use(
   (error: Error, request: Request, response: Response, _: NextFunction) => {
