@@ -1,6 +1,10 @@
-import { Router, Request, Response } from 'express';
+import express, { Router, Request, Response } from 'express';
+import alexaVerifier from 'alexa-verifier-middleware';
 
 const routes = Router();
+
+routes.use(alexaVerifier);
+routes.use(express.json());
 
 function buildResponse(
   speechText: string,

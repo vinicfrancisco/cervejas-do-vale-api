@@ -1,12 +1,7 @@
-import express, { Router } from 'express';
-import alexaVerifier from 'alexa-verifier-middleware';
-import alexaRoutes from './alexa';
+import { Router } from 'express';
 
 const routes = Router();
 
-routes.use('/alexa', alexaRoutes);
-
-alexaRoutes.use(alexaVerifier);
-alexaRoutes.use(express.json());
+// routes.use('/alexa', alexaRoutes);
 
 export default routes;
