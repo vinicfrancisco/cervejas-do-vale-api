@@ -44,7 +44,7 @@ routes.post(
   '/alexa',
   adapter.getRequestHandlers(),
   (req: Request, res: Response) => {
-    // const response =
+    console.log('CHEGOU AQUI');
     return res.json(buildResponse('Teste', true, 'Teste'));
   },
 );
