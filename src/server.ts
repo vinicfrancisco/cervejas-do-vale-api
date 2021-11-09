@@ -6,26 +6,29 @@ import cors from 'cors';
 
 import AppError from '@utils/AppError';
 import routes from './routes';
-import alexaRoutes from './routes/alexa';
+import { IncomingMessage } from 'http';
+
+interface CustomIncomingMessage extends IncomingMessage {
+  rawBody: string;
+}
 
 // import '@shared/infra/typeorm';
 // import '@shared/container';
 
 const app = express();
 
-// app.use(
-//   express.json({
-//     verify: (req, res, buf) => {
-//       req.rawBody = buf.toString();
-//     },
-//   }),
-// );
+app.use(
+  express.json({
+    verify: (req: CustomIncomingMessage, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  }),
+);
 
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 
-// app.use(routes);
-app.use(alexaRoutes);
+app.use(routes);
 
 app.use(
   (error: Error, request: Request, response: Response, _: NextFunction) => {

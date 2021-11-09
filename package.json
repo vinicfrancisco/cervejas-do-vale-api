@@ -10,7 +10,6 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist  --copy-files"
   },
   "dependencies": {
-    "alexa-verifier-middleware": "^1.0.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1"
