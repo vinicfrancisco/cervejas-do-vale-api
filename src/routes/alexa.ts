@@ -28,7 +28,8 @@ function buildResponse(
 }
 
 routes.post('/', (req: Request, res: Response) => {
-  console.log('CHEGOU AQUI');
+  console.log(req.body);
+
   return res.json(buildResponse('Teste', true, 'Teste'));
 });
 
