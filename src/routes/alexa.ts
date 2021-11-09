@@ -27,7 +27,7 @@ function buildResponse(
   return jsonObj;
 }
 
-routes.get('/', (req: Request, res: Response) => {
+routes.post('/', (req: Request, res: Response) => {
   console.log('CHEGOU AQUI');
   return res.json(buildResponse('Teste', true, 'Teste'));
 });
