@@ -28,7 +28,26 @@ function buildResponse(
 }
 
 routes.post('/', (req: Request, res: Response) => {
-  console.log(req.body);
+  if (req.body.request.type === 'LaunchRequest') {
+    console.log('LAUNCH');
+  } else if (req.body.request.type === 'SessionEndedRequest') {
+    console.log('SESSION ENDED');
+  } else if (req.body.request.type === 'IntentRequest') {
+    switch (req.body.request.intent.name) {
+      case 'AMAZON.YesIntent':
+        console.log('YES');
+        break;
+      case 'AMAZON.NoIntent':
+        console.log('NO');
+        break;
+      case 'AMAZON.HelpIntent':
+        console.log('HELP');
+        break;
+      default:
+        console.log(req.body.request.intent.name);
+        break;
+    }
+  }
 
   return res.json(buildResponse('Teste', true, 'Teste'));
 });
