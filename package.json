@@ -11,9 +11,6 @@
   },
   "dependencies": {
     "alexa-verifier-middleware": "^1.0.3",
-    "ask-sdk-core": "^2.11.0",
-    "ask-sdk-express-adapter": "^2.11.0",
-    "ask-sdk-model": "^1.37.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1"

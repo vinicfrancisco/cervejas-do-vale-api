@@ -6,12 +6,6 @@ import cors from 'cors';
 
 import AppError from '@utils/AppError';
 import routes from './routes';
-import { ExpressAdapter } from 'ask-sdk-express-adapter';
-import * as Alexa from 'ask-sdk-core';
-
-const skillBuilder = Alexa.SkillBuilders.custom();
-const skill = skillBuilder.create();
-const adapter = new ExpressAdapter(skill, true, true);
 
 // import '@shared/infra/typeorm';
 // import '@shared/container';
@@ -26,7 +20,7 @@ const app = express();
 //   }),
 // );
 
-// app.use(cors());
+app.use(cors());
 // app.use(express.json());
 
 app.use(routes);
