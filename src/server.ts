@@ -12,7 +12,7 @@ interface CustomIncomingMessage extends IncomingMessage {
   rawBody: string;
 }
 
-import './database';
+// import './database';
 
 // import '@shared/infra/typeorm';
 // import '@shared/container';

@@ -5,3 +5,5 @@ dist
 coverage
 
 ormconfig.json
+
+.env
