@@ -9,9 +9,12 @@ module.exports = {
       {
         alias: {
           '@config': './src/config',
+          '@controllers': './src/controllers',
           '@database': './src/database',
           '@dtos': './src/dtos',
+          '@middlewares': './src/middlewares',
           '@models': './src/models',
+          '@providers': './src/providers',
           '@repositories': './src/repositories',
           '@routes': './src/routes',
           '@services': './src/services',

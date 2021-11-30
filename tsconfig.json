@@ -9,9 +9,12 @@
     "baseUrl": "./src",
     "paths": {
       "@config/*": ["config/*"],
+      "@controllers/*": ["controllers/*"],
       "@database/*": ["database/*"],
       "@dtos/*": ["dtos/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
+      "@providers/*": ["providers/*"],
       "@repositories/*": ["repositories/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
