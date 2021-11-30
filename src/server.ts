@@ -1,8 +1,10 @@
-// import 'reflect-metadata';
+import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+import { errors } from 'celebrate';
 
 import AppError from '@utils/AppError';
 import routes from './routes';
@@ -12,10 +14,8 @@ interface CustomIncomingMessage extends IncomingMessage {
   rawBody: string;
 }
 
-// import './database';
-
-// import '@shared/infra/typeorm';
-// import '@shared/container';
+import './database';
+import './providers';
 
 const app = express();
 
@@ -31,6 +31,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(routes);
+
+app.use(errors());
 
 app.use(
   (error: Error, request: Request, response: Response, _: NextFunction) => {
