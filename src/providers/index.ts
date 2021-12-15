@@ -12,6 +12,12 @@ import UsersRepository from '@repositories/UsersRepository';
 import IUserTokensRepository from '@repositories/UserTokensRepository/IUserTokensRepository';
 import UserTokensRepository from '@repositories/UserTokensRepository';
 
+import IBeerBrandsRepository from '@repositories/BeerBrandsRepository/IBeerBrandsRepository';
+import BeerBrandsRepository from '@repositories/BeerBrandsRepository';
+
+import IBeerTypesRepository from '@repositories/BeerTypesRepository/IBeerTypesRepository';
+import BeerTypesRepository from '@repositories/BeerTypesRepository';
+
 container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);
 
 container.registerSingleton<IStorageProvider>(
@@ -27,4 +33,14 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUserTokensRepository>(
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<IBeerBrandsRepository>(
+  'BeerBrandsRepository',
+  BeerBrandsRepository,
+);
+
+container.registerSingleton<IBeerTypesRepository>(
+  'BeerTypesRepository',
+  BeerTypesRepository,
 );
