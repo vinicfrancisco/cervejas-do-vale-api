@@ -1,6 +1,4 @@
 import User from '@models/User';
-// import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
-// import IFindAllProvidersDTO from '@modules/users/dtos/IFindAllProvidersDTO';
 
 export interface ICreateUserDTO {
   name: string;
