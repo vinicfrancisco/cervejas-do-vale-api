@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { instanceToInstance } from 'class-transformer';
-import GetBeersService from '@services/Beer/GetBeersService';
-import ShowBeerService from '@services/Beer/ShowBeerService';
 import GetFavoriteBeers from '@services/Beer/GetFavoriteBeersService';
 import FavoriteBeerService from '@services/Beer/FavoriteBeerService';
 
-export default class BeersController {
+export default class FavoriteBeersController {
   public async index(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
     const getFavoriteBeers = container.resolve(GetFavoriteBeers);

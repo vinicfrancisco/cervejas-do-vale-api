@@ -12,13 +12,13 @@ class FakeUserFavoriteBeersRepository implements IUserFavoriteBeerRepository {
     beer_id,
     user_id,
   }: IFavoriteBeerDTO): Promise<UserFavoriteBeer> {
-    const user = new UserFavoriteBeer();
+    const userFavoriteBeer = new UserFavoriteBeer();
 
-    Object.assign(user, { id: uuid(), beer_id, user_id });
+    Object.assign(userFavoriteBeer, { id: uuid(), beer_id, user_id });
 
-    this.userFavoriteBeers.push(user);
+    this.userFavoriteBeers.push(userFavoriteBeer);
 
-    return user;
+    return userFavoriteBeer;
   }
 
   public async findFavoriteBeer({

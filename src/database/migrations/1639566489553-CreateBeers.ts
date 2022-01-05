@@ -26,6 +26,10 @@ export class CreateBeers1639566489553 implements MigrationInterface {
             type: 'decimal',
           },
           {
+            name: 'rating',
+            type: 'decimal',
+          },
+          {
             name: 'image',
             type: 'varchar',
             isNullable: true,

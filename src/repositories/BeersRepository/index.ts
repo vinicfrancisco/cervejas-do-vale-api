@@ -11,7 +11,9 @@ class BeersRepository implements IBeersRepository {
   }
 
   public async findAll(): Promise<Beer[]> {
-    const beers = await this.ormRepository.find();
+    const beers = await this.ormRepository.find({
+      relations: ['beer_brand', 'beer_type'],
+    });
 
     return beers;
   }
@@ -24,6 +26,8 @@ class BeersRepository implements IBeersRepository {
         'favoriteUsers',
         `favoriteUsers.user_id = '${user_id}'`,
       )
+      .leftJoinAndSelect('beers.beer_brand', 'beer_brand')
+      .leftJoinAndSelect('beers.beer_type', 'beer_type')
       .getMany();
 
     return beers;
@@ -33,6 +37,10 @@ class BeersRepository implements IBeersRepository {
     const beer = await this.ormRepository.findOne(id);
 
     return beer;
+  }
+
+  public async save(beer: Beer): Promise<Beer> {
+    return this.ormRepository.save(beer);
   }
 }
 

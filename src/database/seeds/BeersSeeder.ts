@@ -5,7 +5,7 @@ import BeerBrand from '@models/BeerBrand';
 import BeerType from '@models/BeerType';
 import Beer from '@models/Beer';
 
-export default class BeerBrandsSeeder implements Seeder {
+export default class BeersSeeder implements Seeder {
   public async run(factory: Factory, connection: Connection): Promise<any> {
     try {
       const handwerkId = uuid();
@@ -108,6 +108,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.5,
             volume: 600,
             price: 15,
+            rating: 0,
             image: 'Borck-Red-Larger.png',
           },
           {
@@ -117,6 +118,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.45,
             volume: 600,
             price: 15,
+            rating: 0,
             image: 'Borck-Pilsen.png',
           },
           {
@@ -126,6 +128,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.45,
             volume: 600,
             price: 15,
+            rating: 0,
             image: 'Borck-Malzbier.png',
           },
           {
@@ -135,6 +138,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.45,
             volume: 600,
             price: 15,
+            rating: 0,
             image: 'Borck-Weizenbier.png',
           },
           {
@@ -144,6 +148,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.8,
             volume: 600,
             price: 15,
+            rating: 0,
             image: 'Borck-IPA.png',
           },
           {
@@ -153,6 +158,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.45,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-Pilsen.png',
           },
           {
@@ -162,6 +168,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.5,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-Weiss.png',
           },
           {
@@ -171,6 +178,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.5,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-Witbier.png',
           },
           {
@@ -180,6 +188,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.5,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-APA.png',
           },
           {
@@ -189,6 +198,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.65,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-IPA.png',
           },
           {
@@ -198,6 +208,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.7,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-BOCK.png',
           },
           {
@@ -207,6 +218,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.8,
             volume: 500,
             price: 16,
+            rating: 0,
             image: 'Shornstein-Stout.png',
           },
           {
@@ -216,6 +228,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.6,
             volume: 500,
             price: 14,
+            rating: 0,
             image: 'Handwerk-IPA.png',
           },
           {
@@ -225,6 +238,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.7,
             volume: 500,
             price: 14.5,
+            rating: 0,
             image: 'Handwerk-Blond-Ale.png',
           },
           {
@@ -234,6 +248,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.49,
             volume: 500,
             price: 14.5,
+            rating: 0,
             image: 'Handwerk-Witbier.png',
           },
           {
@@ -243,6 +258,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.5,
             volume: 500,
             price: 14.5,
+            rating: 0,
             image: 'Handwerk-APA.png',
           },
           {
@@ -252,6 +268,7 @@ export default class BeerBrandsSeeder implements Seeder {
             alcoholic_degree: 0.58,
             volume: 500,
             price: 14,
+            rating: 0,
             image: 'Handwerk-Weiss.png',
           },
         ])

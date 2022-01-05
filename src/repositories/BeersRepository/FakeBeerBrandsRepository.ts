@@ -13,6 +13,14 @@ class FakeBeersRepository implements IBeersRepository {
 
     return findBeer;
   }
+
+  public async save(beer: Beer): Promise<Beer> {
+    const findIndex = this.beers.findIndex(findBeer => findBeer.id === beer.id);
+
+    this.beers[findIndex] = beer;
+
+    return beer;
+  }
 }
 
 export default FakeBeersRepository;
