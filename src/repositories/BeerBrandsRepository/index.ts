@@ -1,9 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import BeerBrand from '@models/BeerBrand';
-import IBeerBrandsRepository, {
-  ICreateBeerBrandDTO,
-} from './IBeerBrandsRepository';
+import IBeerBrandsRepository from './IBeerBrandsRepository';
 
 class BeerBrandsRepository implements IBeerBrandsRepository {
   private ormRepository: Repository<BeerBrand>;
@@ -16,14 +14,6 @@ class BeerBrandsRepository implements IBeerBrandsRepository {
     const beerBrands = await this.ormRepository.find();
 
     return beerBrands;
-  }
-
-  public async create({ name }: ICreateBeerBrandDTO): Promise<BeerBrand> {
-    const beerBrand = this.ormRepository.create({ name });
-
-    await this.ormRepository.save(beerBrand);
-
-    return beerBrand;
   }
 }
 

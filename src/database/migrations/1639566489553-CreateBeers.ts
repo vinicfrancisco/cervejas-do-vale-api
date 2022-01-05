@@ -26,6 +26,11 @@ export class CreateBeers1639566489553 implements MigrationInterface {
             type: 'decimal',
           },
           {
+            name: 'image',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'beer_brand_id',
             type: 'uuid',
             isNullable: false,

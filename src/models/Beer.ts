@@ -1,3 +1,4 @@
+import { Expose } from 'class-transformer';
 import {
   Entity,
   Column,
@@ -7,6 +8,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import uploadConfig from '@config/upload';
 import BeerBrand from './BeerBrand';
 import BeerType from './BeerType';
 
@@ -30,6 +32,9 @@ class Beer {
   @Column()
   beer_brand_id: string;
 
+  @Column()
+  image: string;
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -43,6 +48,23 @@ class Beer {
   @ManyToOne(() => BeerBrand, beerBrand => beerBrand.beers)
   @JoinColumn({ name: 'beer_brand_id' })
   beer_brand: BeerBrand;
+
+  @Expose({ name: 'image_url' })
+  getImageUrl(): string | null {
+    if (!this.image) {
+      return null;
+    }
+
+    switch (uploadConfig.driver) {
+      case 'disk':
+        return `${process.env.APP_API_URL}/files/${this.image}`;
+
+      case 's3':
+        return `https://${uploadConfig.config.aws.Bucket}.s3.amazonaws.com/${this.image}`;
+      default:
+        return null;
+    }
+  }
 }
 
 export default Beer;
