@@ -34,7 +34,9 @@ class BeersRepository implements IBeersRepository {
   }
 
   public async findById(id: string): Promise<Beer | undefined> {
-    const beer = await this.ormRepository.findOne(id);
+    const beer = await this.ormRepository.findOne(id, {
+      relations: ['beer_brand', 'beer_type'],
+    });
 
     return beer;
   }

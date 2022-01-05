@@ -40,6 +40,9 @@ class Beer {
   @Column()
   rating: number;
 
+  hasRated?: boolean;
+  hasFavorited?: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 

@@ -15,11 +15,12 @@ export default class BeersController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+    const user_id = request.user.id;
 
     const showBeer = container.resolve(ShowBeerService);
 
-    const beers = await showBeer.execute({ beer_id: id });
+    const beer = await showBeer.execute({ beer_id: id, user_id });
 
-    return response.json(instanceToInstance(beers));
+    return response.json(instanceToInstance(beer));
   }
 }
