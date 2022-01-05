@@ -20,6 +20,9 @@ class Beer {
   id: string;
 
   @Column()
+  name: string;
+
+  @Column()
   volume: number;
 
   @Column()

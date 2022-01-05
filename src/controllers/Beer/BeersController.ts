@@ -3,14 +3,43 @@ import { container } from 'tsyringe';
 import { instanceToInstance } from 'class-transformer';
 import GetBeersService from '@services/Beer/GetBeersService';
 import ShowBeerService from '@services/Beer/ShowBeerService';
+import { ListBeersSort } from '@repositories/BeersRepository/IBeersRepository';
 
+interface IndexParams {
+  per_page?: number;
+  page?: number;
+  sort?: ListBeersSort;
+  beer_brand_id?: string;
+  beer_type_id?: string;
+  search?: string;
+}
 export default class BeersController {
   public async index(request: Request, response: Response): Promise<Response> {
+    const {
+      page = 1,
+      per_page = 10,
+      sort,
+      beer_brand_id,
+      beer_type_id,
+      search,
+    }: IndexParams = request.query;
+
     const getBeers = container.resolve(GetBeersService);
 
-    const beers = await getBeers.execute();
+    const { data, total } = await getBeers.execute({
+      pagination: { page, per_page },
+      sort,
+      filters: {
+        beer_brand_id,
+        beer_type_id,
+        search,
+      },
+    });
 
-    return response.json(instanceToInstance(beers));
+    return response.json({
+      total,
+      data: instanceToInstance(data),
+    });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {

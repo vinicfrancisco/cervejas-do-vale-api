@@ -1,11 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 
 import Beer from '@models/Beer';
-import IBeersRepository from '@repositories/BeersRepository/IBeersRepository';
-
-interface IRequest {
-  user_id: string;
-}
+import IBeersRepository, {
+  IFindFavoritesOptions,
+  IListBeersResponse,
+} from '@repositories/BeersRepository/IBeersRepository';
 
 @injectable()
 class GetFavoriteBeers {
@@ -14,10 +13,16 @@ class GetFavoriteBeers {
     private beersRepository: IBeersRepository,
   ) {}
 
-  public async execute({ user_id }: IRequest): Promise<Beer[]> {
-    const beers = await this.beersRepository.findFavorites(user_id);
+  public async execute({
+    user_id,
+    pagination,
+  }: IFindFavoritesOptions): Promise<IListBeersResponse> {
+    const response = await this.beersRepository.findFavorites({
+      user_id,
+      pagination,
+    });
 
-    return beers;
+    return response;
   }
 }
 

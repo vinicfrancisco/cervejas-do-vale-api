@@ -103,6 +103,7 @@ export default class BeersSeeder implements Seeder {
         .values([
           {
             id: uuid(),
+            name: 'Borck Red Larger',
             beer_brand_id: borckId,
             beer_type_id: redLargerId,
             alcoholic_degree: 0.5,
@@ -113,6 +114,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Borck Pilsen',
             beer_brand_id: borckId,
             beer_type_id: pilsenId,
             alcoholic_degree: 0.45,
@@ -123,6 +125,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Borck Malzbier',
             beer_brand_id: borckId,
             beer_type_id: malzbierId,
             alcoholic_degree: 0.45,
@@ -133,6 +136,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Borck Weizenbier',
             beer_brand_id: borckId,
             beer_type_id: weizenbierId,
             alcoholic_degree: 0.45,
@@ -143,6 +147,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Borck IPA',
             beer_brand_id: borckId,
             beer_type_id: ipaId,
             alcoholic_degree: 0.8,
@@ -153,6 +158,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein Pilsen',
             beer_brand_id: schornsteinId,
             beer_type_id: pilsenId,
             alcoholic_degree: 0.45,
@@ -163,6 +169,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein Weiss',
             beer_brand_id: schornsteinId,
             beer_type_id: weissId,
             alcoholic_degree: 0.5,
@@ -173,6 +180,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein Witbier',
             beer_brand_id: schornsteinId,
             beer_type_id: witbierId,
             alcoholic_degree: 0.5,
@@ -183,6 +191,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein APA',
             beer_brand_id: schornsteinId,
             beer_type_id: apaId,
             alcoholic_degree: 0.5,
@@ -193,6 +202,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein IPA',
             beer_brand_id: schornsteinId,
             beer_type_id: ipaId,
             alcoholic_degree: 0.65,
@@ -203,6 +213,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein Bock',
             beer_brand_id: schornsteinId,
             beer_type_id: bockId,
             alcoholic_degree: 0.7,
@@ -213,6 +224,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Shornstein Stout',
             beer_brand_id: schornsteinId,
             beer_type_id: stoutId,
             alcoholic_degree: 0.8,
@@ -223,6 +235,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Handwerk Ipa',
             beer_brand_id: handwerkId,
             beer_type_id: ipaId,
             alcoholic_degree: 0.6,
@@ -233,6 +246,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Handwerk Belgian Blond Ale',
             beer_brand_id: handwerkId,
             beer_type_id: belgianBlondAle,
             alcoholic_degree: 0.7,
@@ -243,6 +257,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Handwerk Witbier',
             beer_brand_id: handwerkId,
             beer_type_id: witbierId,
             alcoholic_degree: 0.49,
@@ -253,6 +268,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Handwerk APA',
             beer_brand_id: handwerkId,
             beer_type_id: apaId,
             alcoholic_degree: 0.5,
@@ -263,6 +279,7 @@ export default class BeersSeeder implements Seeder {
           },
           {
             id: uuid(),
+            name: 'Handwerk Weiss',
             beer_brand_id: handwerkId,
             beer_type_id: weissId,
             alcoholic_degree: 0.58,

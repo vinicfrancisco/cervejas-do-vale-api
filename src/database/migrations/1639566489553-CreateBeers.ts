@@ -14,6 +14,10 @@ export class CreateBeers1639566489553 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'name',
+            type: 'varchar',
+          },
+          {
             name: 'volume',
             type: 'int',
           },
