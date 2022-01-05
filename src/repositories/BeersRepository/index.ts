@@ -16,6 +16,19 @@ class BeersRepository implements IBeersRepository {
     return beers;
   }
 
+  public async findFavorites(user_id: string): Promise<Beer[]> {
+    const beers = await this.ormRepository
+      .createQueryBuilder('beers')
+      .innerJoin(
+        'beers.favoriteUsers',
+        'favoriteUsers',
+        `favoriteUsers.user_id = '${user_id}'`,
+      )
+      .getMany();
+
+    return beers;
+  }
+
   public async findById(id: string): Promise<Beer | undefined> {
     const beer = await this.ormRepository.findOne(id);
 

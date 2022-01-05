@@ -21,6 +21,9 @@ import BeerTypesRepository from '@repositories/BeerTypesRepository';
 import IBeersRepository from '@repositories/BeersRepository/IBeersRepository';
 import BeersRepository from '@repositories/BeersRepository';
 
+import IUserFavoriteBeerRepository from '@repositories/UserFavoriteBeerRepository/IUserFavoriteBeerRepository';
+import UserFavoriteBeerRepository from '@repositories/UserFavoriteBeerRepository';
+
 container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);
 
 container.registerSingleton<IStorageProvider>(
@@ -51,4 +54,9 @@ container.registerSingleton<IBeerTypesRepository>(
 container.registerSingleton<IBeersRepository>(
   'BeersRepository',
   BeersRepository,
+);
+
+container.registerSingleton<IUserFavoriteBeerRepository>(
+  'UserFavoriteBeerRepository',
+  UserFavoriteBeerRepository,
 );

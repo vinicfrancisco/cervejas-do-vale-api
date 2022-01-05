@@ -7,10 +7,12 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import uploadConfig from '@config/upload';
 import BeerBrand from './BeerBrand';
 import BeerType from './BeerType';
+import UserFavoriteBeer from './UserFavoriteBeer';
 
 @Entity('beers')
 class Beer {
@@ -48,6 +50,12 @@ class Beer {
   @ManyToOne(() => BeerBrand, beerBrand => beerBrand.beers)
   @JoinColumn({ name: 'beer_brand_id' })
   beer_brand: BeerBrand;
+
+  @OneToMany(
+    () => UserFavoriteBeer,
+    userFavoriteBeer => userFavoriteBeer.favorite_beers,
+  )
+  favoriteUsers: UserFavoriteBeer[];
 
   @Expose({ name: 'image_url' })
   getImageUrl(): string | null {

@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import Beer from './Beer';
 
 @Entity('user_favorite_beers')
 class UserFavoriteBeer {
@@ -22,6 +25,10 @@ class UserFavoriteBeer {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToOne(() => Beer, beer => beer.favoriteUsers)
+  @JoinColumn({ name: 'beer_id' })
+  favorite_beers: Beer;
 }
 
 export default UserFavoriteBeer;
