@@ -53,6 +53,8 @@ class RateBeerService {
 
     const updatedBeer = await this.beersRepository.save(checkBeerExists);
 
+    updatedBeer.hasRated = true;
+
     return updatedBeer;
   }
 }

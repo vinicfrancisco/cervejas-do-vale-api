@@ -59,7 +59,7 @@ class BeersRepository implements IBeersRepository {
       }
 
       if (sortType === 'rating') {
-        query = query.orderBy('beers.rating', order === '-' ? 'DESC' : 'ASC');
+        query = query.orderBy('beers.rating', order === '-' ? 'ASC' : 'DESC');
       }
     }
 
