@@ -11,7 +11,7 @@ export interface IFindRatingDTO {
   beer_id: string;
 }
 
-export default interface IBeerTypesRepository {
+export default interface IBeerRatingRepository {
   addRating: (data: IAddRatingDTO) => Promise<BeerRating>;
   findRating: (data: IFindRatingDTO) => Promise<BeerRating | undefined>;
   getRatingByBeerId: (beer_id: string) => Promise<number>;
