@@ -28,7 +28,9 @@ io.on('connection', socket => {
   socket.on('Authenticated', args => {
     const { alexa_id, user_id } = args;
 
-    socket.emit(`Authenticated-${user_id}`, alexa_id);
+    console.log('enviou');
+
+    socket.emit(`Authenticated-46034649-ad4f-4b40-8933-64d75a1aac04`, alexa_id);
   });
 });
 
