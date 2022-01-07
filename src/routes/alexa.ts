@@ -16,10 +16,15 @@ routes.post('/', (req: Request, res: Response) => {
   } else if (requestType === 'IntentRequest') {
     switch (intent) {
       case 'Authentication':
-        console.log(body.intent);
+        const code = body?.intent?.slots?.code.value || '';
+        console.log(code);
         break;
       case 'ListBeersWithFilters':
-        console.log(body.intent);
+        const type = body?.intent?.slots?.type?.value || '';
+        const brand = body?.intent?.slots?.brand?.value || '';
+
+        console.log(type);
+        console.log(brand);
         break;
       default:
         console.log(req.body.request.intent.name);

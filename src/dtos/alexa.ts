@@ -5,6 +5,8 @@ export type AlexaRequestType =
 
 export type AlexaIntent = 'Authentication' | 'ListBeersWithFilters';
 
+export type ListBeersWithFiltersSlots = 'brand' | 'type' | 'code';
+
 export interface AlexaRequestDTO {
   type: AlexaRequestType;
   requestId: string;
@@ -14,7 +16,21 @@ export interface AlexaRequestDTO {
     name: AlexaIntent;
     confirmationStatus: string;
     slots: {
-      [key: string]: {
+      code: {
+        name: string;
+        value: string;
+        confirmationStatus: string;
+        source: string;
+        slotValue: { type: string; value: string };
+      };
+      brand: {
+        name: string;
+        value: string;
+        confirmationStatus: string;
+        source: string;
+        slotValue: { type: string; value: string };
+      };
+      type: {
         name: string;
         value: string;
         confirmationStatus: string;
