@@ -27,9 +27,9 @@ export const io = new Server(server, {});
 io.on('connection', socket => {
   socket.on('teste', args => {
     console.log('args', args);
-  });
 
-  socket.emit('teste', { hello: 'world' });
+    socket.emit('teste-front', { hello: 'world' });
+  });
 });
 
 app.use(
