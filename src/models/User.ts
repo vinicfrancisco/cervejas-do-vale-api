@@ -4,10 +4,13 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import uploadConfig from '@config/upload';
 
 import { Exclude, Expose } from 'class-transformer';
+import UserAlexaCode from './UserAlexaCode';
 
 @Entity('users')
 class User {
@@ -32,6 +35,11 @@ class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToOne(() => UserAlexaCode, userAlexaCode => userAlexaCode.user, {
+    eager: true,
+  })
+  code: UserAlexaCode;
 
   @Expose({ name: 'avatar_url' })
   getAvatarUrl(): string | null {

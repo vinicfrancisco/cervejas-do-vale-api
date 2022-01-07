@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
+import User from './User';
 
 @Entity('user_alexa_codes')
 class UserAlexaCode {
@@ -19,6 +22,10 @@ class UserAlexaCode {
 
   @Column()
   user_id: string;
+
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;
