@@ -1,5 +1,5 @@
 import { AlexaRequestDTO } from '@dtos/alexa';
-import UserToken from '@models/UserToken';
+import UserAlexaCode from '@models/UserAlexaCode';
 import AuthenticateAlexaService from '@services/Alexa/AuthenticateAlexaService';
 import AppError from '@utils/AppError';
 import buildAlexaResponse, {
@@ -50,21 +50,17 @@ export default class AlexaController {
           try {
             const type = body?.intent?.slots?.type?.value || '';
             const brand = body?.intent?.slots?.brand?.value || '';
-            const userAlexaCodeRepository = getRepository(UserToken);
-
-            console.log(alexa_id);
+            const userAlexaCodeRepository = getRepository(UserAlexaCode);
 
             const userAlexaCode = await userAlexaCodeRepository.findOne({
               where: { alexa_id },
             });
 
-            console.log(userAlexaCode);
-
             if (!userAlexaCode) {
               throw new AppError('Usuário nào autenticado');
             }
 
-            request.io.sockets.in(userAlexaCode?.user_id).emit('ListBeers', {
+            request.io.sockets.in(userAlexaCode.user_id).emit('ListBeers', {
               type,
               brand,
             });
@@ -73,7 +69,7 @@ export default class AlexaController {
               speechText: 'Aqui estão suas cervejas',
               shouldEndSession: false,
             };
-          } catch (err) {
+          } catch {
             alexaResponse = {
               speechText: 'Você não está autenticado',
               shouldEndSession: true,
