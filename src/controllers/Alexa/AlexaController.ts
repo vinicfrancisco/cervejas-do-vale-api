@@ -17,7 +17,7 @@ export default class AlexaController {
     const intent = body?.intent?.name;
 
     let alexaResponse: AlexaResponseProps = {
-      speechText: 'Teste',
+      speechText: '',
       shouldEndSession: false,
     };
 
@@ -46,7 +46,8 @@ export default class AlexaController {
           });
 
           alexaResponse = {
-            speechText: 'Seu dispositivo foi autenticado',
+            speechText:
+              'Seu dispositivo foi autenticado. Você já pode realizar consultas',
             shouldEndSession: false,
           };
           break;
@@ -70,12 +71,13 @@ export default class AlexaController {
             });
 
             alexaResponse = {
-              speechText: 'Aqui estão suas cervejas',
+              speechText: 'Aqui estão os resultados da sua pesquisa',
               shouldEndSession: false,
             };
           } catch {
             alexaResponse = {
-              speechText: 'Você não está autenticado',
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
               shouldEndSession: true,
             };
           }
