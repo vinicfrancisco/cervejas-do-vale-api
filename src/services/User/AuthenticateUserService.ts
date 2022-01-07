@@ -8,6 +8,7 @@ import AppError from '@utils/AppError';
 import User from '@models/User';
 import IUsersRepository from '@repositories/UsersRepository/IUsersRepository';
 import IHashProvider from '@providers/HashProvider/IHashProvider';
+import IUserAlexaCodesRepository from '@repositories/UserAlexaCodesRepository/IUserAlexaCodesRepository';
 
 interface IRequest {
   email: string;
@@ -27,6 +28,9 @@ class AuthenticateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('UserAlexaCodesRepository')
+    private userAlexaCodesRepository: IUserAlexaCodesRepository,
   ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -51,6 +55,23 @@ class AuthenticateUserService {
       subject: user.id,
       expiresIn,
     });
+
+    const findUserAlexaCode = await this.userAlexaCodesRepository.findByUserId(
+      user.id,
+    );
+
+    const code = String(Math.floor(1000 + Math.random() * 9000));
+
+    if (findUserAlexaCode) {
+      findUserAlexaCode.code = code;
+
+      await this.userAlexaCodesRepository.save(findUserAlexaCode);
+    } else {
+      await this.userAlexaCodesRepository.generateCode({
+        user_id: user.id,
+        code,
+      });
+    }
 
     return {
       user,

@@ -27,6 +27,9 @@ import UserFavoriteBeerRepository from '@repositories/UserFavoriteBeerRepository
 import IBeerRatingRepository from '@repositories/BeerRatingRepository/IBeerRatingRepository';
 import BeerRatingRepository from '@repositories/BeerRatingRepository';
 
+import IUserAlexaCodesRepository from '@repositories/UserAlexaCodesRepository/IUserAlexaCodesRepository';
+import UserAlexaCodesRepository from '@repositories/UserAlexaCodesRepository';
+
 container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);
 
 container.registerSingleton<IStorageProvider>(
@@ -67,4 +70,9 @@ container.registerSingleton<IUserFavoriteBeerRepository>(
 container.registerSingleton<IBeerRatingRepository>(
   'BeerRatingRepository',
   BeerRatingRepository,
+);
+
+container.registerSingleton<IUserAlexaCodesRepository>(
+  'UserAlexaCodesRepository',
+  UserAlexaCodesRepository,
 );

@@ -25,10 +25,10 @@ const server = createServer(app);
 export const io = new Server(server, {});
 
 io.on('connection', socket => {
-  socket.on('teste', args => {
-    console.log('args', args);
+  socket.on('Authenticated', args => {
+    const { alexa_id, user_id } = args;
 
-    socket.emit('teste-front', { hello: 'world' });
+    socket.emit(`Authenticated-${user_id}`, alexa_id);
   });
 });
 

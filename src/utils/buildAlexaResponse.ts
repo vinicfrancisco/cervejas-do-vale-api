@@ -1,13 +1,35 @@
-export default function buildAlexaResponse(
-  speechText: string,
-  shouldEndSession: boolean,
-  cardText: string,
-) {
+export interface AlexaResponseProps {
+  speechText: string;
+  shouldEndSession: boolean;
+}
+
+export interface AlexaResponse {
+  version: string;
+  response: {
+    shouldEndSession: boolean;
+    outputSpeech: {
+      type: string;
+      ssml: string;
+    };
+    card: {
+      type: string;
+      title: string;
+      content: string;
+      text: string;
+    };
+  };
+}
+
+export default function buildAlexaResponse({
+  shouldEndSession,
+  speechText,
+}: AlexaResponseProps): AlexaResponse {
   const speechOutput = '<speak>' + speechText + '</speak>';
-  var jsonObj = {
+
+  const response: AlexaResponse = {
     version: '1.0',
     response: {
-      shouldEndSession: false,
+      shouldEndSession: shouldEndSession,
       outputSpeech: {
         type: 'SSML',
         ssml: speechOutput,
@@ -15,10 +37,11 @@ export default function buildAlexaResponse(
       card: {
         type: 'Simple',
         title: 'Cervejas do Vale',
-        content: cardText,
-        text: cardText,
+        content: speechText,
+        text: speechText,
       },
     },
   };
-  return jsonObj;
+
+  return response;
 }
