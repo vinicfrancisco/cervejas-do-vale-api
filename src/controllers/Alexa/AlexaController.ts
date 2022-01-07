@@ -8,6 +8,7 @@ import { container } from 'tsyringe';
 
 export default class AlexaController {
   public async index(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const alexa_id = request?.body?.session?.user?.userId;
     const body = request?.body?.request as AlexaRequestDTO;
     const requestType = body?.type;
@@ -28,7 +29,7 @@ export default class AlexaController {
           const code = body?.intent?.slots?.code.value || '';
           const authenticateAlexa = container.resolve(AuthenticateAlexaService);
 
-          const { user_id } = await authenticateAlexa.execute({
+          await authenticateAlexa.execute({
             code,
             alexa_id,
           });
