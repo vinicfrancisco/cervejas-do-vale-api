@@ -30,7 +30,9 @@ io.on('connection', socket => {
 
     console.log('enviou');
 
-    socket.emit(`Authenticated-46034649-ad4f-4b40-8933-64d75a1aac04`, alexa_id);
+    socket.emit(`Authenticated-46034649-ad4f-4b40-8933-64d75a1aac04`, {
+      alexa_id,
+    });
   });
 });
 
