@@ -21,9 +21,7 @@ export default class AlexaController {
 
     if (requestType === 'LaunchRequest') {
       console.log('LAUNCH');
-      const socket = io('https://cervejas-do-vale.herokuapp.com', {
-        transports: ['weksocket'],
-      });
+      const socket = io('https://cervejas-do-vale.herokuapp.com');
 
       console.log('emitiu');
 

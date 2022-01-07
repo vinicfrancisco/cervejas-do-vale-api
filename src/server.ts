@@ -22,9 +22,7 @@ import './providers';
 const app = express();
 
 const server = createServer(app);
-export const io = new Server(server, {
-  transports: ['websocket'],
-});
+export const io = new Server(server);
 
 io.on('connection', socket => {
   socket.on('Authenticated', args => {
