@@ -1,50 +1,25 @@
+import { AlexaIntent, AlexaRequestDTO, AlexaRequestType } from '@dtos/alexa';
+import buildAlexaResponse from '@utils/buildAlexaResponse';
 import { Router, Request, Response } from 'express';
 
 const routes = Router();
 
-function buildResponse(
-  speechText: string,
-  shouldEndSession: boolean,
-  cardText: string,
-) {
-  const speechOutput = '<speak>' + speechText + '</speak>';
-  var jsonObj = {
-    version: '1.0',
-    response: {
-      shouldEndSession: false,
-      outputSpeech: {
-        type: 'SSML',
-        ssml: speechOutput,
-      },
-      card: {
-        type: 'Simple',
-        title: 'Cervejas do Vale',
-        content: cardText,
-        text: cardText,
-      },
-    },
-  };
-  return jsonObj;
-}
-
 routes.post('/', (req: Request, res: Response) => {
-  if (req.body.request.type === 'LaunchRequest') {
+  const body = req.body.request as AlexaRequestDTO;
+  const requestType = body.type;
+  const intent = body.intent.name;
+
+  if (requestType === 'LaunchRequest') {
     console.log('LAUNCH');
-  } else if (req.body.request.type === 'SessionEndedRequest') {
+  } else if (requestType === 'SessionEndedRequest') {
     console.log('SESSION ENDED');
-  } else if (req.body.request.type === 'IntentRequest') {
-    switch (req.body.request.intent.name) {
-      case 'AMAZON.YesIntent':
-        console.log('YES');
+  } else if (requestType === 'IntentRequest') {
+    switch (intent) {
+      case 'Authentication':
+        console.log(body.intent);
         break;
-      case 'AMAZON.NoIntent':
-        console.log('NO');
-        break;
-      case 'AMAZON.HelpIntent':
-        console.log('HELP');
-        break;
-      case 'HelloWorldIntent':
-        console.log(JSON.stringify(req.body.request));
+      case 'ListBeersWithFilters':
+        console.log(body.intent);
         break;
       default:
         console.log(req.body.request.intent.name);
@@ -52,7 +27,7 @@ routes.post('/', (req: Request, res: Response) => {
     }
   }
 
-  return res.json(buildResponse('Teste', true, 'Teste'));
+  return res.json(buildAlexaResponse('Teste', true, 'Teste'));
 });
 
 export default routes;
