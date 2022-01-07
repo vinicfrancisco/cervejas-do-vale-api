@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 const routes = Router();
 
-const socket = io('htttp://localhost:3333');
+const socket = io('https://cervejas-do-vale.herokuapp.com');
 
 routes.post('/', (req: Request, res: Response) => {
   const userId = req?.body?.session?.user?.userId;
