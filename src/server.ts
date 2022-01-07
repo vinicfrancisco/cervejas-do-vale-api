@@ -28,6 +28,8 @@ io.on('connection', socket => {
   socket.on('teste', args => {
     console.log('args', args);
   });
+
+  socket.emit('teste', { hello: 'world' });
 });
 
 app.use(
