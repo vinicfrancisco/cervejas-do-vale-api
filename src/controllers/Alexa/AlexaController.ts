@@ -22,7 +22,11 @@ export default class AlexaController {
     };
 
     if (requestType === 'LaunchRequest') {
-      console.log('LAUNCH');
+      alexaResponse = {
+        speechText:
+          'Bem-vindo à Cervejas do Vale. Diga seu código para continuar',
+        shouldEndSession: false,
+      };
     } else if (requestType === 'SessionEndedRequest') {
       console.log('SESSION ENDED');
     } else if (requestType === 'IntentRequest') {
