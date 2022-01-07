@@ -47,6 +47,16 @@ export default class AlexaController {
           const type = body?.intent?.slots?.type?.value || '';
           const brand = body?.intent?.slots?.brand?.value || '';
 
+          request.io.sockets.in(user_id).emit('ListBeers', {
+            type,
+            brand,
+          });
+
+          alexaResponse = {
+            speechText: 'Aqui estão suas cervejas',
+            shouldEndSession: false,
+          };
+
           break;
         default:
           console.log(request.body.request.intent.name);
