@@ -1,8 +1,11 @@
 import { AlexaRequestDTO } from '@dtos/alexa';
 import buildAlexaResponse from '@utils/buildAlexaResponse';
 import { Router, Request, Response } from 'express';
+import io from 'socket.io-client';
 
 const routes = Router();
+
+const socket = io('htttp://localhost:3333');
 
 routes.post('/', (req: Request, res: Response) => {
   const userId = req?.body?.session?.user?.userId;
@@ -21,6 +24,7 @@ routes.post('/', (req: Request, res: Response) => {
       case 'Authentication':
         const code = body?.intent?.slots?.code.value || '';
         console.log(code);
+        socket.emit('teste', { hello: 'world' });
         break;
       case 'ListBeersWithFilters':
         const type = body?.intent?.slots?.type?.value || '';

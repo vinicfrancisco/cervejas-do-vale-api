@@ -5,6 +5,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errors } from 'celebrate';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 import AppError from '@utils/AppError';
 import routes from './routes';
@@ -18,6 +20,13 @@ import './database';
 import './providers';
 
 const app = express();
+
+const server = createServer(app);
+export const io = new Server(server, {});
+
+io.on('connection', socket => {
+  //
+});
 
 app.use(
   express.json({
@@ -52,6 +61,6 @@ app.use(
   },
 );
 
-app.listen(process.env.PORT || 3333, () =>
+server.listen(process.env.PORT || 3333, () =>
   console.log('🚀 Server running on port 3333'),
 );
