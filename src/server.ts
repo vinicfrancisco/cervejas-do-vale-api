@@ -25,9 +25,9 @@ const server = createServer(app);
 export const io = new Server(server, {});
 
 io.on('connection', socket => {
-  // socket.on('teste', args => {
-  //   console.log('args', args);
-  // });
+  socket.on('teste', args => {
+    console.log('args', args);
+  });
 });
 
 app.use(
