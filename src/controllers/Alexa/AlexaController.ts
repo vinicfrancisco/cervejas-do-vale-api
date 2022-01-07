@@ -23,6 +23,8 @@ export default class AlexaController {
       console.log('LAUNCH');
       const socket = io('https://cervejas-do-vale.herokuapp.com');
 
+      console.log('emitiu');
+
       socket.emit('teste', { hello: 'world' });
     } else if (requestType === 'SessionEndedRequest') {
       console.log('SESSION ENDED');

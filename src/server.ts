@@ -36,6 +36,7 @@ io.on('connection', socket => {
   });
 
   socket.on('teste', args => {
+    console.log('CHEGOU AQUI', args);
     socket.emit('teste-front', args);
   });
 });
