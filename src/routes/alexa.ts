@@ -5,9 +5,12 @@ import { Router, Request, Response } from 'express';
 const routes = Router();
 
 routes.post('/', (req: Request, res: Response) => {
+  const userId = req?.body?.session?.user?.userId;
   const body = req?.body?.request as AlexaRequestDTO;
   const requestType = body?.type;
   const intent = body?.intent?.name;
+
+  console.log(userId);
 
   if (requestType === 'LaunchRequest') {
     console.log('LAUNCH');
