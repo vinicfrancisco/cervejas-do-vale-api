@@ -18,6 +18,7 @@
       "@repositories/*": ["repositories/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
+      "@socket/*": ["socket/*"],
       "@utils/*": ["utils/*"]
     },
     "esModuleInterop": true,

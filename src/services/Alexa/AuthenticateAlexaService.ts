@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import IUserAlexaCodesRepository from '@repositories/UserAlexaCodesRepository/IUserAlexaCodesRepository';
-import socket from 'socket';
+import socket from '../../socket';
 
 interface IRequest {
   code: string;

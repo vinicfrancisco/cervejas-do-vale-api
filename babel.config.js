@@ -18,6 +18,7 @@ module.exports = {
           '@repositories': './src/repositories',
           '@routes': './src/routes',
           '@services': './src/services',
+          '@socket': './src/socket',
           '@utils': './src/utils',
         },
       },
