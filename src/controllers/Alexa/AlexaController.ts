@@ -52,9 +52,13 @@ export default class AlexaController {
             const brand = body?.intent?.slots?.brand?.value || '';
             const userAlexaCodeRepository = getRepository(UserToken);
 
+            console.log(alexa_id);
+
             const userAlexaCode = await userAlexaCodeRepository.findOne({
               where: { alexa_id },
             });
+
+            console.log(userAlexaCode);
 
             if (!userAlexaCode) {
               throw new AppError('Usuário nào autenticado');
