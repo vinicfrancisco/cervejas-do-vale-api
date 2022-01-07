@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
 import IUserAlexaCodesRepository from '@repositories/UserAlexaCodesRepository/IUserAlexaCodesRepository';
-import socket from '../../socket';
+import UserAlexaCode from '@models/UserAlexaCode';
+import AppError from '@utils/AppError';
 
 interface IRequest {
   code: string;
@@ -15,19 +16,18 @@ class AuthenticateAlexaService {
     private userAlexaCodesRepository: IUserAlexaCodesRepository,
   ) {}
 
-  public async execute({ code, alexa_id }: IRequest): Promise<void> {
+  public async execute({ code, alexa_id }: IRequest): Promise<UserAlexaCode> {
     const userAlexaCode = await this.userAlexaCodesRepository.findByCode(code);
 
-    if (userAlexaCode) {
-      userAlexaCode.alexa_id = alexa_id;
-
-      await this.userAlexaCodesRepository.save(userAlexaCode);
-
-      socket.emit('Authenticated', {
-        alexa_id,
-        user_id: userAlexaCode.user_id,
-      });
+    if (!userAlexaCode) {
+      throw new AppError('User Alexa code not found');
     }
+
+    userAlexaCode.alexa_id = alexa_id;
+
+    await this.userAlexaCodesRepository.save(userAlexaCode);
+
+    return userAlexaCode;
   }
 }
 

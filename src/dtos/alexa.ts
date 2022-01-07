@@ -1,3 +1,5 @@
+import { Server } from 'socket.io';
+
 export type AlexaRequestType =
   | 'LaunchRequest'
   | 'SessionEndedRequest'
@@ -40,3 +42,5 @@ export interface AlexaRequestDTO {
     };
   };
 }
+
+export type ServerType = Server;

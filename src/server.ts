@@ -22,23 +22,21 @@ import './providers';
 const app = express();
 
 const server = createServer(app);
-export const io = new Server(server);
+export const io = new Server(server, { transports: ['websocket'] });
 
 io.on('connection', socket => {
-  socket.on('Authenticated', args => {
-    const { alexa_id, user_id } = args;
+  socket.on('connectUser', args => {
+    const { user_id } = args;
 
-    console.log('enviou');
-
-    socket.emit(`Authenticated-46034649-ad4f-4b40-8933-64d75a1aac04`, {
-      alexa_id,
-    });
+    console.log('Joined:', user_id);
+    socket.join(user_id);
   });
+});
 
-  socket.on('teste', args => {
-    console.log('CHEGOU AQUI', args);
-    socket.emit('teste-front', args);
-  });
+app.use((req, res, next) => {
+  req.io = io;
+
+  return next();
 });
 
 app.use(

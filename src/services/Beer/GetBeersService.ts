@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 
-import Beer from '@models/Beer';
 import IBeersRepository, {
   IListBeersOptions,
   IListBeersResponse,
