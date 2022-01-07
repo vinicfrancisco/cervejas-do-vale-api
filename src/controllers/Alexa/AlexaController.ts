@@ -4,6 +4,7 @@ import buildAlexaResponse, {
   AlexaResponseProps,
 } from '@utils/buildAlexaResponse';
 import { Request, Response } from 'express';
+import io from 'socket.io-client';
 import { container } from 'tsyringe';
 
 export default class AlexaController {
@@ -20,6 +21,9 @@ export default class AlexaController {
 
     if (requestType === 'LaunchRequest') {
       console.log('LAUNCH');
+      const socket = io('https://cervejas-do-vale.herokuapp.com');
+
+      socket.emit('teste', { hello: 'world' });
     } else if (requestType === 'SessionEndedRequest') {
       console.log('SESSION ENDED');
     } else if (requestType === 'IntentRequest') {

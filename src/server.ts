@@ -34,6 +34,10 @@ io.on('connection', socket => {
       alexa_id,
     });
   });
+
+  socket.on('teste', args => {
+    socket.emit('teste-front', args);
+  });
 });
 
 app.use(
