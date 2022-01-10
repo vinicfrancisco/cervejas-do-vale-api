@@ -103,7 +103,7 @@ export default class AlexaController {
             });
 
             alexaResponse = {
-              speechText: 'Aqui estão suas cervejas favoritas',
+              speechText: 'Aqui estão as cervejas com melhor avaliação',
               shouldEndSession: false,
             };
           } catch {
@@ -123,7 +123,89 @@ export default class AlexaController {
             });
 
             alexaResponse = {
-              speechText: 'Aqui estão suas cervejas favoritas',
+              speechText: 'Aqui estão as cervejas com menor avaliação',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
+          }
+          break;
+        case 'ListChepestBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
+
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: '-price',
+            });
+
+            alexaResponse = {
+              speechText: 'Aqui estão as cervejas com os menores preços',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
+          }
+          break;
+        case 'ListExpensivierBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
+
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: 'price',
+            });
+
+            alexaResponse = {
+              speechText: 'Aqui estão as cervejas com os maiores preços',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
+          }
+          break;
+        case 'ListLessGraduationBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
+
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: 'graduation',
+            });
+
+            alexaResponse = {
+              speechText:
+                'Aqui estão as cervejas com menor graduação alcoólica',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
+          }
+          break;
+        case 'ListMoreGraduationBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
+
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: '-graduation',
+            });
+
+            alexaResponse = {
+              speechText:
+                'Aqui estão as cervejas com maior graduação alcoólica',
               shouldEndSession: false,
             };
           } catch {
