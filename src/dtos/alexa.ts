@@ -5,7 +5,10 @@ export type AlexaRequestType =
   | 'SessionEndedRequest'
   | 'IntentRequest';
 
-export type AlexaIntent = 'Authentication' | 'ListBeersWithFilters';
+export type AlexaIntent =
+  | 'Authentication'
+  | 'ListBeersWithFilters'
+  | 'ListFavoriteBeers';
 
 export type ListBeersWithFiltersSlots = 'brand' | 'type' | 'code';
 

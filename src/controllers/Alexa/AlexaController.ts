@@ -82,6 +82,26 @@ export default class AlexaController {
             };
           }
           break;
+        case 'ListFavoriteBeers':
+          const userAlexaCodeRepository = getRepository(UserAlexaCode);
+
+          const userAlexaCode = await userAlexaCodeRepository.findOne({
+            where: { alexa_id },
+          });
+
+          if (!userAlexaCode) {
+            throw new AppError('Usuário nào autenticado');
+          }
+
+          request.io.sockets
+            .in(userAlexaCode.user_id)
+            .emit('ListFavoriteBeers');
+
+          alexaResponse = {
+            speechText: 'Aqui estão suas cervejas favoritas',
+            shouldEndSession: false,
+          };
+          break;
         default:
           console.log(request.body.request.intent.name);
           break;
