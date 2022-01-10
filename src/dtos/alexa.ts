@@ -8,7 +8,13 @@ export type AlexaRequestType =
 export type AlexaIntent =
   | 'Authentication'
   | 'ListBeersWithFilters'
-  | 'ListFavoriteBeers';
+  | 'ListFavoriteBeers'
+  | 'ListBestBeers'
+  | 'ListWorstBeers'
+  | 'ListLessGraduationBeers'
+  | 'ListMoreGraduationBeers'
+  | 'ListChepestBeers'
+  | 'ListExpensivierBeers';
 
 export type ListBeersWithFiltersSlots = 'brand' | 'type' | 'code';
 

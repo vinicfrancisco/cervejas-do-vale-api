@@ -1,13 +1,11 @@
 import { AlexaRequestDTO } from '@dtos/alexa';
-import UserAlexaCode from '@models/UserAlexaCode';
 import AuthenticateAlexaService from '@services/Alexa/AuthenticateAlexaService';
-import AppError from '@utils/AppError';
 import buildAlexaResponse, {
   AlexaResponseProps,
 } from '@utils/buildAlexaResponse';
+import getUseAlexaCodeByAlexaId from '@utils/getUseAlexaCodeByAlexaId';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { getRepository } from 'typeorm';
 
 export default class AlexaController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -52,26 +50,60 @@ export default class AlexaController {
           };
           break;
         case 'ListBeersWithFilters':
-          try {
-            const type = body?.intent?.slots?.type?.value || '';
-            const brand = body?.intent?.slots?.brand?.value || '';
-            const userAlexaCodeRepository = getRepository(UserAlexaCode);
+          {
+            try {
+              const type = body?.intent?.slots?.type?.value || '';
+              const brand = body?.intent?.slots?.brand?.value || '';
+              const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
 
-            const userAlexaCode = await userAlexaCodeRepository.findOne({
-              where: { alexa_id },
-            });
+              request.io.sockets.in(user_id).emit('ListBeers', {
+                type,
+                brand,
+              });
 
-            if (!userAlexaCode) {
-              throw new AppError('Usuário nào autenticado');
+              alexaResponse = {
+                speechText: 'Aqui estão os resultados da sua pesquisa',
+                shouldEndSession: false,
+              };
+            } catch {
+              alexaResponse = {
+                speechText:
+                  'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+                shouldEndSession: true,
+              };
             }
+          }
+          break;
+        case 'ListFavoriteBeers': {
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
 
-            request.io.sockets.in(userAlexaCode.user_id).emit('ListBeers', {
-              type,
-              brand,
+            request.io.sockets.in(user_id).emit('ListFavoriteBeers');
+
+            alexaResponse = {
+              speechText: 'Aqui estão suas cervejas favoritas',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
+          }
+
+          break;
+        }
+        case 'ListBestBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
+
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: 'rating',
             });
 
             alexaResponse = {
-              speechText: 'Aqui estão os resultados da sua pesquisa',
+              speechText: 'Aqui estão suas cervejas favoritas',
               shouldEndSession: false,
             };
           } catch {
@@ -82,25 +114,25 @@ export default class AlexaController {
             };
           }
           break;
-        case 'ListFavoriteBeers':
-          const userAlexaCodeRepository = getRepository(UserAlexaCode);
+        case 'ListWorstBeers':
+          try {
+            const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
 
-          const userAlexaCode = await userAlexaCodeRepository.findOne({
-            where: { alexa_id },
-          });
+            request.io.sockets.in(user_id).emit('ListBeers', {
+              sort: '-rating',
+            });
 
-          if (!userAlexaCode) {
-            throw new AppError('Usuário nào autenticado');
+            alexaResponse = {
+              speechText: 'Aqui estão suas cervejas favoritas',
+              shouldEndSession: false,
+            };
+          } catch {
+            alexaResponse = {
+              speechText:
+                'Você não está autenticado. Siga as instruções no aplicativo para se autenticar',
+              shouldEndSession: true,
+            };
           }
-
-          request.io.sockets
-            .in(userAlexaCode.user_id)
-            .emit('ListFavoriteBeers');
-
-          alexaResponse = {
-            speechText: 'Aqui estão suas cervejas favoritas',
-            shouldEndSession: false,
-          };
           break;
         default:
           console.log(request.body.request.intent.name);
