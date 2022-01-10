@@ -139,7 +139,7 @@ export default class AlexaController {
             const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
 
             request.io.sockets.in(user_id).emit('ListBeers', {
-              sort: '-price',
+              sort: 'price',
             });
 
             alexaResponse = {
@@ -159,7 +159,7 @@ export default class AlexaController {
             const { user_id } = await getUseAlexaCodeByAlexaId(alexa_id);
 
             request.io.sockets.in(user_id).emit('ListBeers', {
-              sort: 'price',
+              sort: '-price',
             });
 
             alexaResponse = {
